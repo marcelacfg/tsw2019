@@ -119,5 +119,43 @@ class ITrianguloTest {
 			triangulo.isEscaleno();
 		});
 	}
+	
+	@Test
+	void testIsRetanguloPositivo() throws LadosInvalidosException {
+		//Arrange
+		triangulo = new Triangulo(3.0, 4.0, 5.0);
+		Boolean resultado;
+		//Act
+		
+		resultado = triangulo.isTrianguloRetangulo();
+		
+		//Assert
+		assertTrue(resultado);
+	}
+	
+	@Test
+	void testIsRetanguloNegativo() throws LadosInvalidosException {
+		//Arrange
+		triangulo = new Triangulo(5.1, 4.0, 3.0);
+		Boolean resultado;
+		//Act
+		
+		resultado = triangulo.isTrianguloRetangulo();
+		
+		//Assert
+		assertFalse(resultado);
+	}
+	
+	@Test
+	void testIsRetanguloException() {
+		//Arrange
+		triangulo = new Triangulo(10.1, 5.0, 5.0);
+		//Act
+		
+		//Assert
+		assertThrows(LadosInvalidosException.class, () -> {
+			triangulo.isTrianguloRetangulo();
+		});
+	}
 
 }

@@ -10,7 +10,6 @@ public class Triangulo implements ITriangulo {
 		lado1 = pLado1;
 		lado2 = pLado2;
 		lado3 = pLado3;
-		//validarTodosOsLados();
 	}
 
 	@Override
@@ -41,23 +40,23 @@ public class Triangulo implements ITriangulo {
 	@Override
 	public boolean isEquilatero() throws LadosInvalidosException {
 		validarTodosOsLados();
-		return isLadosIguais(lado1, lado2) && isLadosIguais(lado2, lado3);
+		return isValoressIguais(lado1, lado2) && isValoressIguais(lado2, lado3);
 	}
 
 	@Override
 	public boolean isIsosceles() throws LadosInvalidosException {
 		validarTodosOsLados();
-		return (isLadosIguais(lado1, lado2) && (!isLadosIguais(lado1, lado3))) ||
-				(isLadosIguais(lado1, lado3) && (!isLadosIguais(lado1, lado2))) ||
-				(isLadosIguais(lado2,lado3) && (!isLadosIguais(lado2, lado1)));
+		return (isValoressIguais(lado1, lado2) && (!isValoressIguais(lado1, lado3))) ||
+				(isValoressIguais(lado1, lado3) && (!isValoressIguais(lado1, lado2))) ||
+				(isValoressIguais(lado2,lado3) && (!isValoressIguais(lado2, lado1)));
 	}
 
 	@Override
 	public boolean isEscaleno() throws LadosInvalidosException {
 		validarTodosOsLados();
-		return ((!isLadosIguais(lado1, lado2)) &&
-				(!isLadosIguais(lado1, lado3)) &&
-				(!isLadosIguais(lado2, lado3)));
+		return ((!isValoressIguais(lado1, lado2)) &&
+				(!isValoressIguais(lado1, lado3)) &&
+				(!isValoressIguais(lado2, lado3)));
 	}
 
 	@Override
@@ -67,14 +66,19 @@ public class Triangulo implements ITriangulo {
 	}
 
 	@Override
-	public boolean isTrianguloRetangulo() {
-		// TODO Auto-generated method stub
-		return false;
+	public boolean isTrianguloRetangulo() throws LadosInvalidosException {
+		// a² = b² + c²
+		validarTodosOsLados();
+		return (
+				(isValoressIguais((lado1*lado1), ((lado2*lado2) + (lado3*lado3)))) ||
+				(isValoressIguais((lado2*lado2), ((lado1*lado1) + (lado3*lado3)))) ||
+				(isValoressIguais((lado3*lado3), ((lado1*lado1) + (lado2*lado2))))
+				);
 	}
 
 	@Override
-	public Boolean isLadosIguais(Double lado1, Double lado2) {
-		return lado1 - lado2 == 0;
+	public Boolean isValoressIguais(Double valor1, Double valor2) {
+		return valor1 - valor2 == 0;
 	}
 
 }

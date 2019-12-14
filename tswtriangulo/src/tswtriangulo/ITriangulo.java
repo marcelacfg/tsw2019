@@ -8,13 +8,13 @@ public interface ITriangulo {
 	Boolean isTamanhoLadoValido(Double lado);
 	
 	Boolean isTamanhoLadoValido(Double ladoASerChecado, Double lado2, Double lado3);
-	Boolean isLadosIguais(Double lado1, Double lado2);
+	Boolean isValoressIguais(Double valor1, Double valor2);
 	
 	boolean isEquilatero() throws LadosInvalidosException;
 	boolean isIsosceles() throws LadosInvalidosException;
 	boolean isEscaleno() throws LadosInvalidosException;
 	boolean isTrianguloValido() throws LadosInvalidosException;
-	boolean isTrianguloRetangulo();
+	boolean isTrianguloRetangulo() throws LadosInvalidosException;
 	
 	
 }
