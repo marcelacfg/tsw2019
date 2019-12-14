@@ -31,9 +31,8 @@ class NumerosFibonacciTest {
 		assertThrows(PosicaoInvalidaException.class, () -> {
 			//Arrange
 			int posicao = 0;
-			long resultado;
 			//Act
-			resultado = nf.getNumeroFibonacci(0);
+			nf.getNumeroFibonacci(posicao);
 		});
 	}
 
