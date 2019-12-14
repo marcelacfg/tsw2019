@@ -58,6 +58,29 @@ public class ConversorCambioTest {
 		assertEquals(valorConvertido, valorConvertidoReal);
 	}
 	
+	@Test
+	public void ConversorValoresVerifyConverterParaDouble() throws MoedaNaoEncontradaException, ValorInvalidoException {
+		//Arrange
+		cvm = mock(ConversorValores.class);
+		ccm = new ConversorCambio(cvm);
+		String valorParaConversao = "R$ 50,00";
+		String valorConvertido = "US$ 25.00";
+		String moeda = "US$";
+		double valorParaConversaoDouble = 50;
+		double valorConvertidoDouble = 25;
+		
+		when(cvm.converterParaDouble(valorParaConversao)).thenReturn(valorParaConversaoDouble);
+		when(cvm.converterParaString(valorConvertidoDouble, moeda)).thenReturn(valorConvertido);
+		double taxaConversao = 0.5;
+		String valorConvertidoReal;
+		
+		//Act
+		valorConvertidoReal = ccm.getValorConvertido(taxaConversao, valorParaConversao, moeda);
+		
+		//Assert
+		verify(cvm, times(1)).converterParaDouble(valorParaConversao);
+	}
+	
 	@Test(expected=MoedaNaoEncontradaException.class)
 	public void ConversorValoresMoedaInvalidaMock() throws MoedaNaoEncontradaException, ValorInvalidoException {
 		
